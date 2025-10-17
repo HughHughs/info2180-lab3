@@ -5,6 +5,27 @@ window.addEventListener("DOMContentLoaded", function() {
 
     squares.forEach(function(square) {
         square.classList.add("square");
+         
     });// Loop through each div and add the square class
+    
+    let PlayerTurn = true; // Tracks which player turn is it.
 
+    const gamestatus = Array(9).fill(null); //tracks the current state of the gameboard.
+
+    squares.forEach(function(square, index) {
+    square.addEventListener("click", function(){
+        
+    if (gamestatus[index] !==null) return; //ignores the click, if square is filled.
+        
+    const symbol = PlayerTurn? "X" : "O";
+        
+    square.textContent = symbol;
+        square.classList.add(symbol);
+        
+        gamestatus[index] = symbol;
+        
+        PlayerTurn =!PlayerTurn;
+
+        });
+    }); //Add listeners for each square.
 });
