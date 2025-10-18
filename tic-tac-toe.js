@@ -2,6 +2,11 @@ window.addEventListener("DOMContentLoaded", function() {
     const board = document.getElementById("board");    //game board element
     const squares = board.querySelectorAll("div");
     const statusDiv =document.getElementById("status");
+    const NewGameBtn = document.querySelector(".btn"); // New Game Button
+    NewGameBtn.addEventListener("click", resetGame);
+    
+    const originalStatusText = statusDiv.textContent;
+
 
     squares.forEach(function(square) {
         square.classList.add("square");
@@ -33,6 +38,21 @@ window.addEventListener("DOMContentLoaded", function() {
     }
         return null;
     }
+    
+    function resetGame() {
+        squares.forEach(function(square) {
+        square.textContent ="";
+        square.classList.remove("X","O","hover");     
+    });
+        for (let i = 0; i < gamestatus.length; i++) gamestatus[i] = null;  // Reset game state
+
+        PlayerTurn = true;
+        gameOver = false;
+        
+        statusDiv.textContent = originalStatusText;
+        statusDiv.classList.remove("you-won"); // Reset status message
+    }
+
 
     squares.forEach(function(square, index) {
         square.addEventListener("click", function(){
