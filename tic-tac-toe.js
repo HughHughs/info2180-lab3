@@ -13,8 +13,9 @@ window.addEventListener("DOMContentLoaded", function() {
     const gamestatus = Array(9).fill(null); //tracks the current state of the gameboard.
 
     squares.forEach(function(square, index) {
+
     square.addEventListener("click", function(){
-        
+         
     if (gamestatus[index] !==null) return; //ignores the click, if square is filled.
         
     const symbol = PlayerTurn? "X" : "O";
@@ -27,5 +28,12 @@ window.addEventListener("DOMContentLoaded", function() {
         PlayerTurn =!PlayerTurn;
 
         });
+
+        square.addEventListener("mouseenter", function(){
+            square.classList.add("hover");
+});
+            square.addEventListener("mouseleave", function(){
+            square.classList.remove("hover");
+});
     }); //Add listeners for each square.
 });
