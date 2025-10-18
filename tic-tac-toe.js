@@ -56,7 +56,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     squares.forEach(function(square, index) {
         square.addEventListener("click", function(){
-            if (gamestatus[index] !==null) return; //ignores the click, if square is filled.  
+        if (gameOver || gamestatus[index] !== null) return; //ignores the click when square is filled and when someone wins. 
             const symbol = PlayerTurn? "X" : "O";
             square.textContent = symbol;
             square.classList.add(symbol);
@@ -73,6 +73,7 @@ window.addEventListener("DOMContentLoaded", function() {
         });
 
         square.addEventListener("mouseenter", function(){
+         if (!gameOver && gamestatus[index] === null)
             square.classList.add("hover");
 });
             square.addEventListener("mouseleave", function(){
